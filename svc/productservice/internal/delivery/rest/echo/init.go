@@ -3,8 +3,8 @@ package echo
 import (
 	"net/http"
 
-	"github.com/isfanazha/simple-go-project/svc/productservice/internal/app"
-	"github.com/isfanazha/simple-go-project/svc/productservice/internal/delivery/rest/service"
+	"github.com/ampazdev/simple-go-project/svc/productservice/internal/app"
+	"github.com/ampazdev/simple-go-project/svc/productservice/internal/delivery/rest/service"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 )

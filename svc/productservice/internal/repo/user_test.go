@@ -6,8 +6,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/isfanazha/simple-go-project/pkg/database/postgresql/connection"
-	"github.com/isfanazha/simple-go-project/services/userservices/internal/entity"
+	"github.com/ampazdev/simple-go-project/pkg/database/postgresql/connection"
+	"github.com/ampazdev/simple-go-project/services/userservices/internal/entity"
 	"github.com/jmoiron/sqlx"
 	"gopkg.in/DATA-DOG/go-sqlmock.v1"
 )

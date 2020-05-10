@@ -2,8 +2,8 @@ package repo
 
 import (
 	"context"
-	"github.com/isfanazha/simple-go-project/services/userservices/internal/entity"
-	"github.com/isfanazha/simple-go-project/pkg/database/postgresql/connection"
+	"github.com/ampazdev/simple-go-project/services/userservices/internal/entity"
+	"github.com/ampazdev/simple-go-project/pkg/database/postgresql/connection"
 )
 
 type pqlUserRepository struct {

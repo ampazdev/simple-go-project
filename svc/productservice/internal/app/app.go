@@ -1,7 +1,7 @@
 package app
 
 import (
-	"github.com/isfanazha/simple-go-project/svc/productservice/internal/app/config"
+	"github.com/ampazdev/simple-go-project/svc/productservice/internal/app/config"
 )
 
 type ProductService struct {

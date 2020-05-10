@@ -1,8 +1,8 @@
 package app
 
 //import (
-//	"github.com/isfanazha/simple-go-project/services/userservices/internal"
-//	"github.com/isfanazha/simple-go-project/services/userservices/internal/usecase"
+//	"github.com/ampazdev/simple-go-project/services/userservices/internal"
+//	"github.com/ampazdev/simple-go-project/services/userservices/internal/usecase"
 //	"time"
 //)
 //

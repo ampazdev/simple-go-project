@@ -3,7 +3,7 @@ package service
 import (
 	"net/http"
 
-	"github.com/isfanazha/simple-go-project/svc/productservice/internal/entity"
+	"github.com/ampazdev/simple-go-project/svc/productservice/internal/entity"
 	"github.com/labstack/echo"
 )
 
