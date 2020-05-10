@@ -5,8 +5,8 @@ import (
 
 	"github.com/ampazdev/simple-go-project/svc/productservice/internal/app"
 	"github.com/ampazdev/simple-go-project/svc/productservice/internal/delivery/rest/service"
-	"github.com/labstack/echo"
-	"github.com/labstack/echo/middleware"
+	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 )
 
 func Start(app *app.ProductService) {
