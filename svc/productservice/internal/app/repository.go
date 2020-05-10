@@ -2,11 +2,11 @@ package app
 
 //import (
 //	"fmt"
-//	"github.com/isfanazha/simple-go-project/svc/userservice/internal"
-//	"github.com/isfanazha/simple-go-project/svc/userservice/internal/app/config"
-//	"github.com/isfanazha/simple-go-project/svc/userservice/internal/repo"
+//	"github.com/ampazdev/simple-go-project/svc/userservice/internal"
+//	"github.com/ampazdev/simple-go-project/svc/userservice/internal/app/config"
+//	"github.com/ampazdev/simple-go-project/svc/userservice/internal/repo"
 //
-//	"github.com/isfanazha/simple-go-project/pkg/database/postgresql/connection"
+//	"github.com/ampazdev/simple-go-project/pkg/database/postgresql/connection"
 //)
 //
 //type repository struct {

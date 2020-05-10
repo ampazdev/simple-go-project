@@ -2,8 +2,8 @@ package usecase
 
 import (
 	"context"
-	"github.com/isfanazha/simple-go-project/services/userservices/internal"
-	"github.com/isfanazha/simple-go-project/services/userservices/internal/entity"
+	"github.com/ampazdev/simple-go-project/services/userservices/internal"
+	"github.com/ampazdev/simple-go-project/services/userservices/internal/entity"
 	"time"
 )
 

@@ -5,9 +5,9 @@ import (
 	"log"
 	"os"
 
-	"github.com/isfanazha/simple-go-project/svc/productservice/internal/app"
-	"github.com/isfanazha/simple-go-project/svc/productservice/constant"
-	"github.com/isfanazha/simple-go-project/svc/productservice/internal/delivery/rest/echo"
+	"github.com/ampazdev/simple-go-project/svc/productservice/internal/app"
+	"github.com/ampazdev/simple-go-project/svc/productservice/constant"
+	"github.com/ampazdev/simple-go-project/svc/productservice/internal/delivery/rest/echo"
 )
 
 func main() {
