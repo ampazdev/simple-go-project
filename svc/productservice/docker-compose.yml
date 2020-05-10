@@ -1,0 +1,16 @@
+version: '3.1'
+services:
+  userservices_postgre:
+    image: postgres
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: userservices
+      POSTGRES_USER: isfanazha
+      POSTGRES_PASSWORD: 12345
+    volumes:
+      - userservices_db_data:/var/lib/postgresql/data
+
+volumes:
+  userservices_db_data:
+    driver: local

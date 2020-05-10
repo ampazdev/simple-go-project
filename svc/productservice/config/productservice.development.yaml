@@ -1,0 +1,28 @@
+appname: "localservices"
+
+grpc:
+  address: "0.0.0.0:9000"
+
+rest:
+  address: "0.0.0.0"
+  port: 8000
+  write_timeout: 3
+  read_timeout: 3
+  idle_timeout: 3
+
+db:
+  db_engine: "postgres"
+  master:
+    address: "127.0.0.1"
+    port: 5432
+    db_name: "userservices"
+    user: "isfanazha"
+    password: "12345"
+    ssl_mode: disable
+  slave:
+    address: "127.0.0.1"
+    port: 5432
+    db_name: "userservices"
+    user: "isfanazha"
+    password: "12345"
+    ssl_mode: disable
