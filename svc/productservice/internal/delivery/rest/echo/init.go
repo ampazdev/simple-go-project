@@ -19,8 +19,9 @@ func Start(app *app.ProductService) {
 
 	v1 := e.Group("/v1")
 
-	prod := service.NewProduct()
+	prod := service.NewProduct(app.UseCases.ProductUC)
 	v1.Add(http.MethodGet, "/products", prod.GetProducts)
+	v1.Add(http.MethodGet, "/products/:id", prod.GetProduct)
 
 	e.Logger.Fatal(e.Start(":5000"))
 }

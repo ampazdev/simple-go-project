@@ -5,9 +5,10 @@ import (
 )
 
 type ProductService struct {
-	Config config.Config
-	//UseCases *UseCase
-	//Repos    *repository
+	Config   *config.Config
+	Database *Database
+	UseCases *UseCases
+	Repos    *Repos
 }
 
 func NewProductService(filepath string) (*ProductService, error) {
@@ -17,17 +18,26 @@ func NewProductService(filepath string) (*ProductService, error) {
 		return nil, err
 	}
 
-	app := &ProductService{
-		Config: cfg,
-		//UseCases: nil,
-		//Repos:    nil,
+	db, err := newDatabase(&cfg.DB)
+	if err != nil {
+		return nil, err
 	}
 
-	return app, nil
+	repos := newRepos(db)
+	usecases := newUseCases(repos)
+
+	return &ProductService{
+		Config:   cfg,
+		Database: db,
+		UseCases: usecases,
+		Repos:    repos,
+	}, nil
 }
 
-func (a *ProductService) Close() []error {
+func (p *ProductService) Close() []error {
 	var errs []error
+
+	errs = append(errs, p.Database.Close())
 
 	return errs
 }

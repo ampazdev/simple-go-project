@@ -1,9 +1,6 @@
 package config
 
 import (
-	"fmt"
-
-	"github.com/jmoiron/sqlx"
 	_ "github.com/lib/pq" // to import postgres driver
 )
 
@@ -15,27 +12,9 @@ type Database struct {
 
 type Params struct {
 	Address  string `yaml:"address"`
-	User     string `yaml:"userservices"`
+	User     string `yaml:"user"`
 	Password string `yaml:"password"`
-	DbName   string `yaml:"name"`
-	SSLMode  string `yaml:"ssl_mode"`
+	DbName   string `yaml:"dbname"`
+	SSLMode  string `yaml:"sslmode"`
 	Port     int    `yaml:"port"`
-}
-
-func NewDatabase(cfg Config) (*sqlx.DB, error) {
-	databaseURI := fmt.Sprintf("user=%s password=%s dbname=%s host=%s port=%d sslmode=%s",
-		cfg.DB.Master.User,
-		cfg.DB.Master.Password,
-		cfg.DB.Master.DbName,
-		cfg.DB.Master.Address,
-		cfg.DB.Master.Port,
-		cfg.DB.Master.SSLMode,
-	)
-
-	db, err := sqlx.Connect("postgres", databaseURI)
-	if err != nil {
-		return nil, err
-	}
-
-	return db, nil
 }

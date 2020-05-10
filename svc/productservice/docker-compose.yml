@@ -1,16 +1,16 @@
 version: '3.1'
 services:
-  userservices_postgre:
+  goproject_postgre:
     image: postgres
     ports:
       - "5432:5432"
     environment:
-      POSTGRES_DB: userservices
+      POSTGRES_DB: goproject
       POSTGRES_USER: ampazdev
       POSTGRES_PASSWORD: 12345
     volumes:
-      - userservices_db_data:/var/lib/postgresql/data
+      - goproject_db_data:/var/lib/postgresql/data
 
 volumes:
-  userservices_db_data:
+  goproject_db_data:
     driver: local

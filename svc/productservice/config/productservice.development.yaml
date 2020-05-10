@@ -11,18 +11,18 @@ rest:
   idle_timeout: 3
 
 db:
-  db_engine: "postgres"
+  engine: "postgres"
   master:
     address: "127.0.0.1"
     port: 5432
-    db_name: "userservices"
-    user: "isfanazha"
+    dbname: "goproject"
+    user: "ampazdev"
     password: "12345"
-    ssl_mode: disable
+    sslmode: "disable"
   slave:
     address: "127.0.0.1"
     port: 5432
-    db_name: "userservices"
-    user: "isfanazha"
+    dbname: "goproject"
+    user: "ampazdev"
     password: "12345"
-    ssl_mode: disable
+    sslmode: "disable"
