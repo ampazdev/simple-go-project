@@ -11,20 +11,20 @@ type Config struct {
 }
 
 // NewConfig creates new Config by reading values stored in config file
-func NewConfig(filepath string) (Config, error) {
+func NewConfig(filepath string) (*Config, error) {
 	cfg := Config{}
 
 	cfgReader := viper.New()
 	cfgReader.SetConfigFile(filepath)
 	err := cfgReader.ReadInConfig()
 	if err != nil {
-		return cfg, err
+		return nil, err
 	}
 
 	err = cfgReader.Unmarshal(&cfg)
 	if err != nil {
-		return cfg, err
+		return nil, err
 	}
 
-	return cfg, nil
+	return &cfg, nil
 }
