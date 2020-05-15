@@ -2,8 +2,10 @@ package database
 
 import (
 	"context"
+	"database/sql"
 	"fmt"
 
+	"github.com/ampazdev/simple-go-project/gopkg/bridge"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -28,7 +30,7 @@ type DBParams struct {
 }
 
 // Constructor of sqlxDB
-func NewSqlxDB() *sqlxDB {
+func NewSqlxDB() bridge.Database {
 	return &sqlxDB{}
 }
 
@@ -57,4 +59,24 @@ func (s *sqlxDB) Connect(_ context.Context, cfg Config) (*sqlxDB, error) {
 	return &sqlxDB{
 		DB: db,
 	}, nil
+}
+
+func (s *sqlxDB) GetContext(ctx context.Context, dest interface{}, query string, args ...interface{}) error {
+	return s.DB.GetContext(ctx, dest, query, args)
+}
+
+func (s *sqlxDB) QueryContext(ctx context.Context, query string, args ...interface{}) (*sql.Rows, error) {
+	return s.DB.QueryContext(ctx, query, args)
+}
+
+func (s *sqlxDB) QueryxContext(ctx context.Context, query string, args ...interface{}) (*sqlx.Rows, error) {
+	return s.DB.QueryxContext(ctx, query, args)
+}
+
+func (s *sqlxDB) QueryRowxContext(ctx context.Context, query string, args ...interface{}) *sqlx.Row {
+	return s.DB.QueryRowx(ctx, query, args)
+}
+
+func (s *sqlxDB) ExecContext(ctx context.Context, query string, args ...interface{}) (sql.Result, error) {
+	return s.DB.ExecContext(ctx, query, args)
 }
