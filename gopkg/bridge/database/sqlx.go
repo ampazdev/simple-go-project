@@ -5,7 +5,6 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/ampazdev/simple-go-project/gopkg/bridge"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -30,7 +29,7 @@ type DBParams struct {
 }
 
 // Constructor of sqlxDB
-func NewSqlxDB() bridge.Database {
+func NewSqlxDB() *sqlxDB {
 	return &sqlxDB{}
 }
 
