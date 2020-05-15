@@ -5,7 +5,6 @@ import (
 	"database/sql"
 	"fmt"
 
-	"github.com/ampazdev/simple-go-project/gopkg/bridge"
 	"github.com/jmoiron/sqlx"
 )
 
@@ -30,12 +29,12 @@ type DBParams struct {
 }
 
 // Constructor of sqlxDB
-func NewSqlxDB() bridge.Database {
+func NewSqlxDB() *sqlxDB {
 	return &sqlxDB{}
 }
 
-// TODO: implement slave in database
-func (s *sqlxDB) Connect(_ context.Context, cfg Config) (*sqlxDB, error) {
+// TODO: implement slave in database and using context
+func (s *sqlxDB) Connect(ctx context.Context, cfg Config) (*sqlxDB, error) {
 	dbMasterURI := fmt.Sprintf(
 		"user=%s password=%s dbname=%s host=%s port=%d sslmode=%s",
 		cfg.Master.User,
@@ -74,7 +73,7 @@ func (s *sqlxDB) QueryxContext(ctx context.Context, query string, args ...interf
 }
 
 func (s *sqlxDB) QueryRowxContext(ctx context.Context, query string, args ...interface{}) *sqlx.Row {
-	return s.DB.QueryRowx(ctx, query, args)
+	return s.DB.QueryRowxContext(ctx, query, args)
 }
 
 func (s *sqlxDB) ExecContext(ctx context.Context, query string, args ...interface{}) (sql.Result, error) {
