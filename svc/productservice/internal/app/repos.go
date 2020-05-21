@@ -9,8 +9,8 @@ type Repos struct {
 	ProductReaderRepo internal.ProductReaderRepo
 }
 
-func newRepos(database *Database) *Repos {
+func newRepos(bridges *Bridges) *Repos {
 	return &Repos{
-		ProductReaderRepo: dbRepo.NewProductReaderRepo(database.DB),
+		ProductReaderRepo: dbRepo.NewProductReaderRepo(bridges.DB),
 	}
 }
