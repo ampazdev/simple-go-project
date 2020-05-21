@@ -2,17 +2,17 @@ package database
 
 import (
 	"context"
-	"database/sql"
 
+	"github.com/ampazdev/simple-go-project/gopkg/bridge"
 	"github.com/ampazdev/simple-go-project/svc/productservice/internal"
 	"github.com/ampazdev/simple-go-project/svc/productservice/internal/entity"
 )
 
 type ProductReaderRepo struct {
-	DB *sql.DB // TODO: create bridges
+	DB bridge.Database
 }
 
-func NewProductReaderRepo(db *sql.DB) internal.ProductReaderRepo {
+func NewProductReaderRepo(db bridge.Database) internal.ProductReaderRepo {
 	return &ProductReaderRepo{
 		DB: db,
 	}
@@ -27,22 +27,11 @@ func (p *ProductReaderRepo) GetByID(ctx context.Context, id int64) (*entity.Prod
 			where id = $1;
 	`
 
-	stmt, err := p.DB.PrepareContext(ctx, q)
-	if err != nil {
+	product := &entity.Product{}
+
+	if err := p.DB.GetContext(ctx, product, q, &id); err != nil {
 		return nil, err
 	}
 
-	row := stmt.QueryRowContext(ctx, &id)
-
-	res := entity.Product{}
-	err = row.Scan(
-		&res.Name,
-		&res.Description,
-	)
-
-	if err != nil {
-		return nil, err
-	}
-
-	return &res, nil
+	return product, nil
 }

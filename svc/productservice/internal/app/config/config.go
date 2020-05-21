@@ -1,27 +1,26 @@
 package config
 
 import (
-	"github.com/spf13/viper"
+	"github.com/ampazdev/simple-go-project/svc/productservice/constant"
+	"go.uber.org/config"
 )
 
 type Config struct {
-	AppName string   `yaml:"appname"`
+	AppName string   `yaml:"app_name"`
 	DB      Database `yaml:"db"`
-	Rest
+	Rest    Rest     `yaml:"rest"`
 }
 
 // NewConfig creates new Config by reading values stored in config file
 func NewConfig(filepath string) (*Config, error) {
 	cfg := Config{}
 
-	cfgReader := viper.New()
-	cfgReader.SetConfigFile(filepath)
-	err := cfgReader.ReadInConfig()
+	provider, err := config.NewYAML(config.File(constant.ConfigProjectFilepath))
 	if err != nil {
 		return nil, err
 	}
 
-	err = cfgReader.Unmarshal(&cfg)
+	err = provider.Get("").Populate(&cfg)
 	if err != nil {
 		return nil, err
 	}
