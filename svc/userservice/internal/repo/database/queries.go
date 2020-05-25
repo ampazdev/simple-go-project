@@ -10,6 +10,25 @@ const (
 `
 )
 
+// UPDATE
+const (
+	updateUserInfo = `
+		UPDATE USER_INFO
+		SET EMAIL = $1,
+			FULL_NAME = $2,
+			PHONE_NUMBER = $3
+		WHERE ID = $4;
+`
+)
+
+// DELETE
+const (
+	deleteUserInfo = `
+		DELETE FROM USER_INFO
+		WHERE ID = $1;
+`
+)
+
 // SELECT
 const (
 	getUserCredByEmail = `

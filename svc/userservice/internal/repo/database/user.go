@@ -55,6 +55,46 @@ func (p *UserRepo) InsertUserInfo(ctx context.Context, user entity.User) (*entit
 	return &res, nil
 }
 
+func (p *UserRepo) UpdatetUserInfo(ctx context.Context, user entity.User) (*entity.User, error) {
+	stmt, err := p.DB.PrepareContext(ctx, updateUserInfo)
+	if err != nil {
+		return nil, err
+	}
+
+	//row := stmt.QueryRowContext(ctx, &user.Email, &user.FullName, &user.PhoneNumber, &user.ID)
+	result, err2 := stmt.Exec(&user.Email, &user.FullName, &user.PhoneNumber, &user.ID)
+
+	if err2 != nil {
+		return nil, err
+	}
+	rowsAffected, _ := result.RowsAffected()
+	if rowsAffected == 0 {
+		fmt.Println("THere are no data affected")
+	}
+
+	return &user, nil
+}
+
+func (p *UserRepo) DeleteUserInfo(ctx context.Context, user entity.User) (*entity.User, error) {
+	stmt, err := p.DB.PrepareContext(ctx, deleteUserInfo)
+	if err != nil {
+		return nil, err
+	}
+
+	//row := stmt.QueryRowContext(ctx, &user.ID)
+	result, err2 := stmt.Exec(&user.ID)
+
+	if err2 != nil {
+		return nil, err
+	}
+	rowsAffected, _ := result.RowsAffected()
+	if rowsAffected == 0 {
+		fmt.Println("THere are no data affected")
+	}
+
+	return &user, nil
+}
+
 func (p *UserRepo) SetUserDetailByEmailCache(ctx context.Context, user entity.User) error {
 	key := fmt.Sprintf(userDetailByEmailKey, user.Email)
 	marshall, err := json.Marshal(user)
