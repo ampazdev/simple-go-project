@@ -13,6 +13,9 @@ type UserReaderRepo interface {
 	InsertUserInfo(ctx context.Context, user entity.User) (*entity.User, error)
 	SignupUser(ctx context.Context, user entity.User) (*entity.User, error)
 	Login(ctx context.Context, user entity.User) (*entity.User, error)
+
+	SetUserDetailByEmailCache(ctx context.Context, user entity.User) error
+	GetUserDetailByEmailCache(ctx context.Context, user entity.User) (*entity.User, error)
 }
 
 type UserWriterRepo interface{}

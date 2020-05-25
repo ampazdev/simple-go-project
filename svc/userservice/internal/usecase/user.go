@@ -8,11 +8,27 @@ import (
 )
 
 func (p *UserUC) GetByUserInfoByEmail(ctx context.Context, user entity.User) (*entity.User, error) {
-	res, err := p.userReaderRepo.GetByUserInfoByEmail(ctx, user)
+	// first get from cache
+	res, err := p.userReaderRepo.GetUserDetailByEmailCache(ctx, user)
 	if err != nil {
 		return nil, err
 	}
-
+	// immediate return when cache not nil
+	if nil != res && res.Email != "" {
+		return res, nil
+	}
+	// if not nil then get from db
+	res, err = p.userReaderRepo.GetByUserInfoByEmail(ctx, user)
+	if err != nil {
+		return nil, err
+	}
+	// set cache so detail get from cache not from db
+	if nil != res && res.Email != "" {
+		err = p.userReaderRepo.SetUserDetailByEmailCache(ctx, *res)
+		if err != nil {
+			return nil, err
+		}
+	}
 	return res, nil
 }
 
@@ -103,4 +119,14 @@ func (p *UserUC) SignupUser(ctx context.Context, user entity.User) (*entity.User
 	res.PhoneNumber = user.PhoneNumber
 
 	return res, nil
+}
+
+func (p *UserUC) SetUserDetailByEmailCache(ctx context.Context, user entity.User) error {
+	fmt.Println("set user cache usecase")
+	return nil
+}
+
+func (p *UserUC) GetUserDetailByEmailCache(ctx context.Context, user entity.User) (*entity.User, error) {
+	fmt.Println("get user cache usecase")
+	return &entity.User{}, nil
 }

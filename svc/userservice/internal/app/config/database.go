@@ -10,6 +10,13 @@ type Database struct {
 	Slave  Params `yaml:"slave"`
 }
 
+type Redis struct {
+	MaxIdle   int    `yaml:"maxIdle"`
+	MaxActive int    `yaml:"maxActive"`
+	Host      string `yaml:"host"`
+	Port      string `yaml:"port"`
+}
+
 type Params struct {
 	Address  string `yaml:"address"`
 	User     string `yaml:"user"`

@@ -5,6 +5,7 @@ import (
 	"fmt"
 
 	"github.com/ampazdev/simple-go-project/svc/userservice/internal/app/config"
+	"github.com/gomodule/redigo/redis"
 )
 
 // TODO: move to bridge
@@ -34,4 +35,19 @@ func newDatabase(cfg *config.Database) (*Database, error) {
 	return &Database{
 		dbConn,
 	}, nil
+}
+
+func newPool(cfg *config.Redis) *redis.Pool {
+	return &redis.Pool{
+		MaxIdle:   cfg.MaxIdle,
+		MaxActive: cfg.MaxActive, // max number of connections
+		Dial: func() (redis.Conn, error) {
+			c, err := redis.Dial("tcp", fmt.Sprintf("%s:%s", cfg.Host, cfg.Port))
+			if err != nil {
+				panic(err.Error())
+			}
+			return c, err
+		},
+	}
+
 }

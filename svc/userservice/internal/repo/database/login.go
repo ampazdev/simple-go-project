@@ -3,18 +3,21 @@ package database
 import (
 	"context"
 	"database/sql"
+	"github.com/gomodule/redigo/redis"
 
 	"github.com/ampazdev/simple-go-project/svc/userservice/internal"
 	"github.com/ampazdev/simple-go-project/svc/userservice/internal/entity"
 )
 
 type UserRepo struct {
-	DB *sql.DB // TODO: create bridges
+	DB    *sql.DB // TODO: create bridges
+	Cache *redis.Pool
 }
 
-func NewUserReaderRepo(db *sql.DB) internal.UserReaderRepo {
+func NewUserReaderRepo(db *sql.DB, cache *redis.Pool) internal.UserReaderRepo {
 	return &UserRepo{
-		DB: db,
+		DB:    db,
+		Cache: cache,
 	}
 }
 
