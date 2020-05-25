@@ -1,0 +1,28 @@
+appname: "userservice"
+
+grpc:
+  address: "0.0.0.0:9000"
+
+rest:
+  address: "0.0.0.0"
+  port: 8000
+  write_timeout: 3
+  read_timeout: 3
+  idle_timeout: 3
+
+db:
+  engine: "postgres"
+  master:
+    address: "127.0.0.1"
+    port: 5432
+    dbname: "userservice"
+    user: "admin"
+    password: "admin"
+    sslmode: "disable"
+  slave:
+    address: "127.0.0.1"
+    port: 5432
+    dbname: "userservice"
+    user: "admin"
+    password: "admin"
+    sslmode: "disable"
