@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package productproto;
+
+message Product {
+    int64 id = 1;
+    string name = 2;
+    string description = 3;
+}
+
+message GetProductsRequest {
+}
+
+message GetProductsResponse {
+    repeated Product products = 1;
+}
