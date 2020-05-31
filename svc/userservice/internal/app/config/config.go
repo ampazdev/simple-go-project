@@ -1,12 +1,15 @@
 package config
 
 import (
+	"github.com/gomodule/redigo/redis"
 	"github.com/spf13/viper"
 )
 
 type Config struct {
 	AppName string   `yaml:"appname"`
 	DB      Database `yaml:"db"`
+	Redis   Redis    `yaml:"redis"`
+	Cache   redis.Conn
 	Rest
 }
 

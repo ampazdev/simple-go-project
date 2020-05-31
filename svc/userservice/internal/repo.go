@@ -11,8 +11,13 @@ type UserReaderRepo interface {
 	GetUserCredByEmail(ctx context.Context, user entity.User) (*entity.User, error)
 	InsertUserCred(ctx context.Context, user entity.User) (*entity.User, error)
 	InsertUserInfo(ctx context.Context, user entity.User) (*entity.User, error)
+	UpdatetUserInfo(ctx context.Context, user entity.User) (*entity.User, error)
+	DeleteUserInfo(ctx context.Context, user entity.User) (*entity.User, error)
 	SignupUser(ctx context.Context, user entity.User) (*entity.User, error)
 	Login(ctx context.Context, user entity.User) (*entity.User, error)
+
+	SetUserDetailByEmailCache(ctx context.Context, user entity.User) error
+	GetUserDetailByEmailCache(ctx context.Context, user entity.User) (*entity.User, error)
 }
 
 type UserWriterRepo interface{}

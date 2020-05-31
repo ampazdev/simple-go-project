@@ -112,3 +112,57 @@ func (l *User) GetUser(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, res)
 }
+
+func (l *User) UpdateUser(c echo.Context) error {
+	var err error
+	var errObject entity.Error
+	user := new(entity.User)
+	if err = c.Bind(user); err != nil {
+		fmt.Println("error bind")
+	}
+	authHeader := c.Request().Header.Get("Authorization")
+	bearerToken := strings.Split(authHeader, " ")
+	if len(bearerToken) == 2 {
+		authToken := bearerToken[1]
+		mapClaims, valid := utils.ExtractClaims(authToken)
+		if !valid {
+			errObject.Message = "Token not valid!"
+			return c.JSON(http.StatusBadRequest, errObject)
+		}
+		params := utils.GetParams(mapClaims)
+		user.Email = params.Email
+	}
+	res, err := l.UC.UpdatetUserInfo(context.TODO(), *user)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, err)
+	}
+
+	return c.JSON(http.StatusOK, res)
+}
+
+func (l *User) DeleteUser(c echo.Context) error {
+	var err error
+	var errObject entity.Error
+	user := new(entity.User)
+	if err = c.Bind(user); err != nil {
+		fmt.Println("error bind")
+	}
+	authHeader := c.Request().Header.Get("Authorization")
+	bearerToken := strings.Split(authHeader, " ")
+	if len(bearerToken) == 2 {
+		authToken := bearerToken[1]
+		mapClaims, valid := utils.ExtractClaims(authToken)
+		if !valid {
+			errObject.Message = "Token not valid!"
+			return c.JSON(http.StatusBadRequest, errObject)
+		}
+		params := utils.GetParams(mapClaims)
+		user.Email = params.Email
+	}
+	res, err := l.UC.DeleteUserInfo(context.TODO(), *user)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, err)
+	}
+
+	return c.JSON(http.StatusOK, res)
+}

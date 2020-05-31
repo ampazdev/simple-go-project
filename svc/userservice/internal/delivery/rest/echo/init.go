@@ -25,6 +25,8 @@ func Start(app *app.UserService) {
 	v1User := e.Group("/v1/user")
 	v1User.Use(user.Auth)
 	v1User.Add(http.MethodGet, "/getProfile", user.GetUser)
+	v1User.Add(http.MethodPost, "/update", user.UpdateUser)
+	v1User.Add(http.MethodDelete, "/delete", user.DeleteUser)
 
 	e.Logger.Fatal(e.Start(":5005"))
 }
