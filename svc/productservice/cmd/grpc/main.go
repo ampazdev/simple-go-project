@@ -5,9 +5,9 @@ import (
 	"log"
 	"os"
 
-	"github.com/ampazdev/simple-go-project/svc/productservice/internal/app"
 	"github.com/ampazdev/simple-go-project/svc/productservice/constant"
-	"github.com/ampazdev/simple-go-project/svc/productservice/internal/delivery/rest/echo"
+	"github.com/ampazdev/simple-go-project/svc/productservice/internal/app"
+	"github.com/ampazdev/simple-go-project/svc/productservice/internal/delivery/grpc"
 )
 
 func main() {
@@ -16,7 +16,6 @@ func main() {
 		env = constant.OsEnvDefaultEnvironment
 	}
 
-	//configPath := flag.String("config", "", "specifies configuration's file path")
 	flag.Parse()
 
 	log.SetFlags(log.Ldate | log.Ltime | log.Lmicroseconds | log.Llongfile)
@@ -32,6 +31,6 @@ func main() {
 		}
 	}()
 
-	// Start rest server
-	echo.Start(prodServiceApp)
+	// Start GRPC server
+	grpc.Start(prodServiceApp)
 }

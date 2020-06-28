@@ -3,6 +3,9 @@ app_name: "product-service"
 rest:
   port: 8000
 
+grpc:
+  port: ":9000"
+
 db:
   sqlx_config:
     driver: "postgres"
