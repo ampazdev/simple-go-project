@@ -8,6 +8,7 @@
 
 # Ignore Golang's Compiled binaries
 /productservice-rest
+/productservice-grpc
 
 # Test binary, built with `go test -c`
 *.test

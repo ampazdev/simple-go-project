@@ -11,7 +11,7 @@ type ProductUC struct {
 	productReaderRepo internal.ProductReaderRepo
 }
 
-func NewProductUC(productReaderRepo internal.ProductReaderRepo) internal.ProductReaderRepo {
+func NewProductUC(productReaderRepo internal.ProductReaderRepo) internal.ProductUseCase {
 	return &ProductUC{productReaderRepo: productReaderRepo}
 }
 

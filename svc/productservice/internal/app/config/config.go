@@ -9,6 +9,7 @@ type Config struct {
 	AppName string   `yaml:"app_name"`
 	DB      Database `yaml:"db"`
 	Rest    Rest     `yaml:"rest"`
+	GRPC    GRPC     `yaml:"grpc"`
 }
 
 // NewConfig creates new Config by reading values stored in config file
